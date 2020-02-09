@@ -88,10 +88,10 @@
                     document.getElementById('seconds').innerText = Math.floor((distance % (minute)) / second);
 
                 //do something later when date is reached
-                //if (distance < 0) {
-                //  clearInterval(x);
-                //  'IT'S MY BIRTHDAY!;
-                //}
+                if (distance < 0) {
+                    clearInterval(x);
+		    alert("counter is offline");
+                }
 
             }, second)
     </script>
