@@ -46,7 +46,7 @@
             -webkit-box-align: center;
             -ms-flex-align: center;
             align-items: center;
-            background-color: #2fffc5;
+            background-color: #2fbbff;
             display: -webkit-box;
             display: -ms-flexbox;
             display: flex;
@@ -70,31 +70,33 @@
             <li class="rubik"><span id="minutes"></span>Minutos</li>
             <li class="rubik"><span id="seconds"></span>Segundos</li>
         </ul>
+	<ul>
+		<p>De los cuales <strong id="weekend"></strong> dias, son fin de semana. Aproximadamente...</p>
+	</ul>
     </div>
     <script>
-        const second = 1000,
-            minute = second * 60,
-            hour = minute * 60,
-            day = hour * 24;
+	const second = 1000,
+	    minute = second * 60,
+	    hour = minute * 60,
+	    day = hour * 24;
 
-        let countDown = new Date('Dec 1, 2020 15:00:00').getTime(),
-            x = setInterval(function() {
+	let countDown = new Date('Dec 1, 2020 15:00:00').getTime();
+	x = setInterval(function() {
 
-                let now = new Date().getTime(),
-                    distance = countDown - now;
+	    let now = new Date().getTime();
+	    distance = countDown - now;
 
-                document.getElementById('days').innerText = Math.floor(distance / (day)),
-                    document.getElementById('hours').innerText = Math.floor((distance % (day)) / (hour)),
-                    document.getElementById('minutes').innerText = Math.floor((distance % (hour)) / (minute)),
-                    document.getElementById('seconds').innerText = Math.floor((distance % (minute)) / second);
+	    document.getElementById('days').innerText = Math.floor(distance / (day));
+	    document.getElementById('hours').innerText = Math.floor((distance % (day)) / (hour));
+	    document.getElementById('minutes').innerText = Math.floor((distance % (hour)) / (minute));
+	    document.getElementById('seconds').innerText = Math.floor((distance % (minute)) / second);
+	    document.getElementById('weekend').innerText = Math.round(Math.floor(distance / (day)) * 0.285714286);
+	    if (distance < 0) {
+		clearInterval(x);
+		alert("counter is offline");
+	    }
 
-                //do something later when date is reached
-                if (distance < 0) {
-                    clearInterval(x);
-		    alert("counter is offline");
-                }
-
-            }, second)
+	}, second)
     </script>
 </body>
 
